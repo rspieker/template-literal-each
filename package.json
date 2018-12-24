@@ -1,6 +1,6 @@
 {
   "name": "template-literal-each",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Iterate over objects created from markdown style tables",
   "main": "source/tag.js",
   "scripts": {
