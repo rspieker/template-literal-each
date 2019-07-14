@@ -25,6 +25,6 @@
     "@hapi/lab": "^19.0.1"
   },
   "dependencies": {
-    "template-literal-table": "^2.0.2"
+    "template-literal-table": "^2.0.3"
   }
 }
