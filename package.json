@@ -21,10 +21,10 @@
   "author": "Rogier Spieker <rogier+npm@konfirm.eu>",
   "license": "MIT",
   "devDependencies": {
-    "@hapi/code": "^5.3.1",
-    "@hapi/lab": "^19.0.1"
+    "@hapi/code": "^6.0.0",
+    "@hapi/lab": "^20.2.1"
   },
   "dependencies": {
-    "template-literal-table": "^2.0.3"
+    "template-literal-table": "^2.0.4"
   }
 }
