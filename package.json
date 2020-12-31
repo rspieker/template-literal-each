@@ -1,6 +1,6 @@
 {
   "name": "template-literal-each",
-  "version": "1.0.8",
+  "version": "2.0.0-beta.1",
   "description": "Iterate over objects created from markdown style tables",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
