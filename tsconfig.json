@@ -1,0 +1,18 @@
+{
+  "include": [
+    "source"
+  ],
+  "exclude": [
+    "test",
+    "node_modules"
+  ],
+  "compilerOptions": {
+    "declaration": true,
+    "outDir": "dist",
+    "target": "es5",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
