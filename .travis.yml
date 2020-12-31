@@ -17,10 +17,10 @@ jobs:
       node_js: stable
       deploy:
         provider: npm
-        cleanup: false
+        skip_cleanup: true
         email: rogier+npm@konfirm.eu
         on:
           branch: master
           tags: true
-        api_token:
+        api_key:
           secure: ezjF+Ni1vtFhOoSH/uN405krPEZ3zuFe3/ap7Zk+sTYC96H/SeyRVtY4X5Yv2bsvZlZ/iuOCFxkjxCZq1oqrKniTAgX5fQbGpTRhSth6DpqElLTCLmIiUFQ6wadsk/zbwFfWkAO9pGQDSSPdjHwtetNW27z9BwFnpPW7oMQb5SPw6/ryToKmEVnlThcq+yNqmyUQns6OiS0w4pzjONW91JrGT7xMh+1AZ6xO39EK6l81IB+JiM3Q6zwnzUuBxFUPRksGXB2YMtfdVlDHtle7pOB28mFDw8XeYvyY9zV+PhWs9sxN0iVk2ooYYwGyKiCnQPsVAkTAVweSReBH8gVxHxODx3XF7HBUjHT3igjR7Fs8suMFTHdyK438Dqbx3rdJ0al3ygEUQ7rhdbR2ISt4eTolTQQr1j8EWJHVl0LKTi0uL+FdWxPh7JiWY0OClNLJ60Ys3WS43qMt4WeuC2tpLq7P50Zy2ApYyBq0AOTiVV9NDDtkPPQM1f+MTBrfxZyzq/3f4r7wRodvtxcD28JtEEqDN6gOqhnFqMfVVU9x/7aAJQgT/Zwv0SqFoA4QZpl2e52Uf9VzEx0U44gOYcn64PZb67b7wO4U2ovoAcfP8cTUeMGVKXR+i5CRxuVs4O47JZE1pw/mZUI51YuCSOBCSdk3iin7SaZbromu5uGj/jI=
