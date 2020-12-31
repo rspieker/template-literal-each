@@ -1,6 +1,6 @@
 {
   "name": "template-literal-each",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0-beta.2",
   "description": "Iterate over objects created from markdown style tables",
   "main": "dist/index.js",
   "types": "dist/index.d.js",
@@ -8,7 +8,7 @@
     "test": "ts-node node_modules/.bin/tape 'test/**/*.ts'",
     "test:coverage": "nyc --require ts-node/register tape 'test/**/*.ts'",
     "test:pretty": "nyc --require ts-node/register tape 'test/**/*.ts' | tap-spec",
-    "build": " ./node_modules/.bin/tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.json",
     "prepare": "npm run build"
   },
   "homepage": "https://github.com/rspieker/template-literal-each",
