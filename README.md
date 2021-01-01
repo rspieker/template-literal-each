@@ -77,6 +77,8 @@ empty`
 ### `create`
 The `each` and `empty` functions should cover most scenarios, though sometimes one needs different filter applied to the records passed in. For this purpose the `create` function exists, it allows any number of filters to be specified, which will be applied _before_ the records are created from the values, meaning the filter function will receive all values as separate argument (no reference to the name, though the order represents the same order as the table columns)
 
+The filter function signature is `(...cells: unknown[]) => boolean`, please refer to the underlying [`template-literal-table` Filter tips](https://github.com/rspieker/template-literal-table#filters) for more information.
+
 ```ts
 import { create } from 'template-literal-table';
 
@@ -102,7 +104,7 @@ fourth`
 
 # License
 
-MIT License Copyright (c) 2018-2020 Rogier Spieker
+MIT License Copyright (c) 2018-2021 Rogier Spieker
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
