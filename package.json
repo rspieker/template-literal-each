@@ -46,6 +46,6 @@
     "typescript": "^4.1.3"
   },
   "dependencies": {
-    "template-literal-table": "^3.0.0"
+    "template-literal-table": "^3.0.1"
   }
 }
