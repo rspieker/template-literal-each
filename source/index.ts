@@ -1,6 +1,6 @@
-import * as Literal from 'template-literal-table';
+import { table, create as tcreate, empty as tempty } from "template-literal-table";
 
-function iterator<T extends { [key: string]: unknown }, P extends Parameters<typeof Literal.table>>(parser: (...args: P) => T[]): (...args: P) => (callback: (record: T, index: number, all: T[]) => void) => void {
+function iterator<T extends { [key: string]: unknown }, P extends Parameters<typeof table>>(parser: (...args: P) => T[]): (...args: P) => (callback: (record: T, index: number, all: T[]) => void) => void {
 	return (...args: P) => {
 		const records: T[] = parser(...args);
 
@@ -8,9 +8,8 @@ function iterator<T extends { [key: string]: unknown }, P extends Parameters<typ
 	};
 }
 export function create(...filters: ((...values: unknown[]) => boolean)[]): ReturnType<typeof iterator> {
-	return iterator(Literal.create(...filters));
+	return iterator(tcreate(...filters));
 }
 
-export const empty = iterator(Literal.empty);
-export const each = Object.assign(iterator(Literal.table), { empty });
-export default each;
+export const empty = iterator(tempty);
+export const each = Object.assign(iterator(table), { empty });
