@@ -15,10 +15,10 @@ Being based on the [`template-literal-table` package](https://www.npmjs.com/pack
 
 name      | description
 ----------|-------------
-`default` | The default export, this is `each`
 `each`    | Table iterator, skips divider rows (cells only containing two or more `-` characters) and rows consisting of empty cells
 `empty`   | Table iterator, skips divider rows, preserves rows consisting of empty cells
 `create`  | Table iterator creator, creates a new iterator with custom row filter functions
+`mapper`  | Mapping Table iterator creator, creates a new iterator with a mapper to cast each records' properties into the desired type/shape
 
 ## API
 
@@ -102,9 +102,133 @@ fourth`
 //  { one: undefined, two: '2', three: '3', four: '4' },
 ```
 
+### `mapper`
+Sometimes it more convenient to keep the table simple and map the values into different types afterwards, this can now be done by creating a mapping iterator
+
+```ts
+import { mapper } from 'template-literal-each';
+const map = mapper<{ foo: number, bar: boolean, baz: Array<string> }>({ foo: Number, bar: (v): boolean => Boolean(Number(v)), baz: (v) => [String(v)] });
+const records = map`
+	foo | bar | baz
+	----|-----|-----
+	7   | 1   | 3
+	2   | 0   | 0
+`((record) => {
+	console.log(record);
+});
+
+// { foo: 7, bar: true, baz: ['3'] },
+// { foo: 2, bar: false, baz: ['0'] },
+```
+
+
+## Styles
+
+Tables in Markdown style come in different style, currently we support the following styles. Keep in mind that the cells of the header divider row have to be two characters minimum (e.g. `--`, `:-`, `-:`), this is to allow for cells to contain only `-` (which you could interpret as an explicit form of `N/A`)
+
+The most basic format, only the bare essentials
+
+```
+key1|key2|key3
+value1|value2|value3
+```
+
+Slightly improved readability using some more spacing around column separators
+
+```
+key1 | key2 | key3
+value1 | value2 | value3
+```
+
+As that doesn't really provide more readability, this format is preferred
+
+```
+key1   | key2   | key3
+-------|--------|--------
+value1 | value2 | value3
+```
+
+A common format provides a more table-like look and feel
+
+```
+| key1   | key2   | key3   |
+|--------|--------|--------|
+| value1 | value2 | value3 |
+```
+
+Some like to have more clear columns
+
+```
+| key1   | key2   | key3   |
+| ------ | ------ | ------ |
+| value1 | value2 | value3 |
+```
+
+Although ignored by the `table`-tag, alignment indicators are supported in the header divider
+
+```
+key1   | key2   | key3
+------:|:------:|:------
+value1 | value2 | value3
+```
+
+Can be used with spacing around the column separators
+
+```
+key1   | key2   | key3
+-----: | :----: | :-----
+value1 | value2 | value3
+```
+
+Also works in combination with borders
+
+```
+| key1   | key2   | key3   |
+|-------:|:------:|:-------|
+| value1 | value2 | value3 |
+```
+
+And with both borders and spacing around column separators
+```
+| key1   | key2   | key3   |
+| -----: | :----: | :----- |
+| value1 | value2 | value3 |
+```
+
+
+## Tips
+
+### Prettier
+_This tip was suggested by @LucasSegersFabro_
+If you want prettier to format your tables automatically, you can trick it into thinking it is looking at the Jest each syntax (which unfortunatly a hardcoded pattern within prettier).
+
+```js
+import { each } from 'template-literal-each';
+
+// for formatting purposes
+const it = {
+  each,
+};
+
+const test = suite('Common processor tests');
+
+it.each`
+  your   | table | here
+  -------|-------|------
+  thanks | to    | @LucasSegersFabro
+`((record) => {
+	//...
+});
+```
+
+### Escaping the pipe character (`|`)
+
+Besides the general character escaping rules in JavaScript/TypeScript strings, sometimes you really want a pipe symbol without resorting to a value (`${'|'}`), this can be done by adding two backslashes before a pipe character: `\\|`, it is actively enforced _not_ to be interpreted as column separator.
+
+
 # License
 
-MIT License Copyright (c) 2018-2021 Rogier Spieker
+MIT License Copyright (c) 2018-2022 Rogier Spieker
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

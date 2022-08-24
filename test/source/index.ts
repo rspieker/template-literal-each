@@ -2,19 +2,17 @@ import test from 'tape';
 import * as Each from '../../source';
 
 test('exports', (t) => {
+	t.deepEqual(Object.keys(Each), ['create', 'mapper', 'empty', 'each'], 'exports only "create", "mapper", "empty" and "each"');
+
 	t.true(typeof Each.each === 'function', 'exports "each" function');
 	t.true(typeof Each.empty === 'function', 'exports "empty" function');
 	t.true(typeof Each.create === 'function', 'exports "create" function');
-
-	t.true(typeof Each.default === 'function', 'exports "default" function');
-	t.equal(Each.default, Each.each, 'exported "default" is the "each" function');
-
-	t.deepEqual(Object.keys(Each), ['create', 'empty', 'each', 'default'], 'exports only "create", "empty", "each" and "default"');
+	t.true(typeof Each.mapper === 'function', 'exports "mapper" function');
 
 	t.end();
 });
 
-const { default: tag } = Each;
+const { each: tag } = Each;
 const proof = [
 	{ letter: undefined, index: undefined },
 	{ letter: 'a', index: 1 },
@@ -68,7 +66,7 @@ test('empty - iterates over every record', (t) => {
 });
 
 test('create - custom filter', (t) => {
-	const collect = [];
+	const collect: Array<any> = [];
 	const none = Each.create(() => false);
 	none`
 		one | two
@@ -77,7 +75,7 @@ test('create - custom filter', (t) => {
 		1   |
 			| 2
 		1   | 2
-	`((record) => {
+	`((record: any) => {
 		collect.push(record);
 	});
 
@@ -108,6 +106,24 @@ test('create - fourth (readme example)', (t) => {
 			t.equal(all.length, sample.length, `should contain ${sample.length} records`);
 		}
 		t.deepEqual(record, sample[index], JSON.stringify(sample[index]));
+	});
+
+	t.end();
+});
+
+test('mapper - casts values', (t) => {
+	const map = Each.mapper<{ foo: number, bar: boolean, baz: Array<string> }>({ foo: Number, bar: (v): boolean => Boolean(Number(v)), baz: (v) => [String(v)] });
+	const expected = [
+		{ foo: 7, bar: true, baz: ['3'] },
+		{ foo: 2, bar: false, baz: ['0'] },
+	];
+	const records = map`
+		foo | bar | baz
+		----|-----|-----
+		7   | 1   | 3
+		2   | 0   | 0
+	`((record, index) => {
+		t.deepEqual(record, expected[index], `is mapped to ${JSON.stringify(record)}`);
 	});
 
 	t.end();
