@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [unreleased]
 
 ### Added
+- mapping iterator creator, allowing for a mapper which maps all record properties into a type/shape
 
 ### Changed
 - BREAKING: Updated to `template-literal-table` v4 for the table parsing, which supports a bunch of table style tweaks that may break depending on your usage (unlikely)

@@ -18,6 +18,7 @@ name      | description
 `each`    | Table iterator, skips divider rows (cells only containing two or more `-` characters) and rows consisting of empty cells
 `empty`   | Table iterator, skips divider rows, preserves rows consisting of empty cells
 `create`  | Table iterator creator, creates a new iterator with custom row filter functions
+`mapper`  | Mapping Table iterator creator, creates a new iterator with a mapper to cast each records' properties into the desired type/shape
 
 ## API
 
@@ -100,6 +101,26 @@ fourth`
 //  { one: '1', two: undefined, three: '3', four: '4' },
 //  { one: undefined, two: '2', three: '3', four: '4' },
 ```
+
+### `mapper`
+Sometimes it more convenient to keep the table simple and map the values into different types afterwards, this can now be done by creating a mapping iterator
+
+```ts
+import { mapper } from 'template-literal-each';
+const map = mapper<{ foo: number, bar: boolean, baz: Array<string> }>({ foo: Number, bar: (v): boolean => Boolean(Number(v)), baz: (v) => [String(v)] });
+const records = map`
+	foo | bar | baz
+	----|-----|-----
+	7   | 1   | 3
+	2   | 0   | 0
+`((record) => {
+	console.log(record);
+});
+
+// { foo: 7, bar: true, baz: ['3'] },
+// { foo: 2, bar: false, baz: ['0'] },
+```
+
 
 ## Styles
 
