@@ -2,19 +2,17 @@ import test from 'tape';
 import * as Each from '../../source';
 
 test('exports', (t) => {
+	t.deepEqual(Object.keys(Each), ['create', 'empty', 'each'], 'exports only "create", "empty" and "each"');
+
 	t.true(typeof Each.each === 'function', 'exports "each" function');
 	t.true(typeof Each.empty === 'function', 'exports "empty" function');
 	t.true(typeof Each.create === 'function', 'exports "create" function');
 
-	t.true(typeof Each.default === 'function', 'exports "default" function');
-	t.equal(Each.default, Each.each, 'exported "default" is the "each" function');
-
-	t.deepEqual(Object.keys(Each), ['create', 'empty', 'each', 'default'], 'exports only "create", "empty", "each" and "default"');
 
 	t.end();
 });
 
-const { default: tag } = Each;
+const { each: tag } = Each;
 const proof = [
 	{ letter: undefined, index: undefined },
 	{ letter: 'a', index: 1 },
