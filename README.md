@@ -177,6 +177,29 @@ And with both borders and spacing around column separators
 
 ## Tips
 
+### Prettier
+_This tip was suggested by @LucasSegersFabro_
+If you want prettier to format your tables automatically, you can trick it into thinking it is looking at the Jest each syntax (which unfortunatly a hardcoded pattern within prettier).
+
+```js
+import { each } from 'template-literal-each';
+
+// for formatting purposes
+const it = {
+  each,
+};
+
+const test = suite('Common processor tests');
+
+it.each`
+  your   | table | here
+  -------|-------|------
+  thanks | to    | @LucasSegersFabro
+`((record) => {
+	//...
+});
+```
+
 ### Escaping the pipe character (`|`)
 
 Besides the general character escaping rules in JavaScript/TypeScript strings, sometimes you really want a pipe symbol without resorting to a value (`${'|'}`), this can be done by adding two backslashes before a pipe character: `\\|`, it is actively enforced _not_ to be interpreted as column separator.
