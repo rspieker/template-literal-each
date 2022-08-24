@@ -1,6 +1,6 @@
 {
   "name": "template-literal-each",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Iterate over objects created from markdown style tables",
   "iife": "dist/stringify.js",
   "main": "dist/stringify.cjs.js",
