@@ -11,8 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 ### Deprecated
 
+## [3.0.1] - 2023-10-17
 
-## [3.0.0]
+### Changed
+- updated dependencies
+
+
+## [3.0.0] - 2022-08-24
 
 ### Added
 - mapping iterator creator, allowing for a mapper which maps all record properties into a type/shape
@@ -46,7 +51,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2018-12-24
 - Initial release
 
-[unreleased]: https://github.com/rspieker/template-literal-each/compare/v3.0.0...HEAD
+[unreleased]: https://github.com/rspieker/template-literal-each/compare/v3.0.1...HEAD
+[3.0.1]: https://github.com/rspieker/template-literal-each/compare/v3.0.0...v3.0.1
 [3.0.0]: https://github.com/rspieker/template-literal-each/compare/v2.0.0...v3.0.0
 [2.0.0]: https://github.com/rspieker/template-literal-each/compare/v1.0.8...v2.0.0
 [1.0.2 - 1.0.8]: https://github.com/rspieker/template-literal-each/compare/v1.0.1...v1.0.8
