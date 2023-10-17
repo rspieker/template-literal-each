@@ -7,6 +7,6 @@
     "esModuleInterop": true,
     "outDir": "dist/",
     "target": "ES2018",
-    "moduleResolution": "NodeNext"
+    "moduleResolution": "Node"
   }
 }
