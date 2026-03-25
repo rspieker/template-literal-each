@@ -2,7 +2,7 @@ import test from 'tape';
 import * as Each from '../../source';
 
 test('exports', (t) => {
-	t.deepEqual(Object.keys(Each), ['create', 'mapper', 'empty', 'each'], 'exports only "create", "mapper", "empty" and "each"');
+	t.deepEqual(Object.keys(Each), ['empty', 'each', 'create', 'mapper'], 'exports only "create", "mapper", "empty" and "each"');
 
 	t.true(typeof Each.each === 'function', 'exports "each" function');
 	t.true(typeof Each.empty === 'function', 'exports "empty" function');

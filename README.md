@@ -44,6 +44,24 @@ each`
 //  { foo: '4', bar: '8', baz: '16'},
 ```
 
+**TypeScript** — you can pass an explicit type parameter at the call site to have `record` in the callback typed as `T` without a separate cast:
+
+```ts
+import { each } from 'template-literal-each';
+
+type Row = { foo: number; bar: number; baz: number };
+
+each<Row>`
+	foo  | bar  | baz
+	-----|------|-----
+	${1} | ${2} | ${4}
+	${2} | ${4} | ${8}
+`((record) => {
+	// record is Row
+	console.log(record.foo);
+});
+```
+
 ### `empty`
 Like the `each` function, with the difference that rows containing only undefined cells are preserved, do note that any newline in the table structure will become a record, regardless of intention. This means that a trailing newline (as shown below) will also result in a record (consisting of only undefined values).
 
@@ -72,6 +90,23 @@ empty`
 //  { foo: 2, bar: 4, baz: 8},
 //  { foo: '4', bar: '8', baz: '16'},
 //  { foo: undefined, bar: undefined, baz: undefined},
+```
+
+**TypeScript** — you can pass an explicit type parameter at the call site to have `record` in the callback typed as `T` without a separate cast:
+
+```ts
+import { empty } from 'template-literal-each';
+
+type Row = { foo: number | undefined; bar: number | undefined; baz: number | undefined };
+
+empty<Row>`
+	foo  | bar  | baz
+	-----|------|-----
+	${1} | ${2} | ${4}
+`((record) => {
+	// record is Row
+	console.log(record.foo);
+});
 ```
 
 ### `create`
