@@ -4,6 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.0](https://github.com/rspieker/template-literal-each/compare/v3.0.1...v3.1.0) (2026-03-25)
+
+
+### Features
+
+* implemented improved typing ([3a44345](https://github.com/rspieker/template-literal-each/commit/3a44345941a011de622c56b7d1d3b03fd2060f2b))
+
 ## [unreleased]
 
 ### Added
