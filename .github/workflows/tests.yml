@@ -6,15 +6,16 @@ name: Tests
 on:
   push:
     branches:
-      - "main"
-      - "fix/*"
-      - "feature/*"
+      - 'main'
+      - 'master'
+      - 'fix/*'
+      - 'feature/*'
     paths-ignore:
-      - "**.md"
+      - '**.md'
   pull_request:
     types: [opened, synchronize, closed]
     paths-ignore:
-      - "**.md"
+      - '**.md'
 
 jobs:
   build:
@@ -27,14 +28,14 @@ jobs:
           - windows-latest
           - macos-latest
         node-version:
-          - 16.x
-          - 18.x
           - 20.x
+          - 22.x
+          - 24.x
 
     steps:
       - uses: actions/checkout@v4
       - name: Use Node ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm install
