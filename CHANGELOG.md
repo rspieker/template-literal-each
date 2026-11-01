@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.1.1](https://github.com/rspieker/template-literal-each/compare/v3.1.0...v3.1.1) (2026-11-01)
+
+
+### Bug Fixes
+
+* rebuild against template-literal-table 4.2.1 ([7f90875](https://github.com/rspieker/template-literal-each/commit/7f908755ad0abb82216b66772f026fc0a581e48f))
+* rebuild against template-literal-table 4.2.1 ([58b3f22](https://github.com/rspieker/template-literal-each/commit/58b3f22a96945f38722de7b197b55a7784d777c0))
+
 ## [3.1.0](https://github.com/rspieker/template-literal-each/compare/v3.0.1...v3.1.0) (2026-03-25)
 
 
