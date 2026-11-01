@@ -1,4 +1,5 @@
-import test from 'tape';
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import { each } from '../source/index';
 
 const expected = [
@@ -8,7 +9,7 @@ const expected = [
     { id: '4', name: 'Square Programming Thing', rarity: 'rare', discount: undefined },
 ];
 
-test('Style - absolute minimum', (t) => {
+test('Style - absolute minimum', () => {
     const parsed = each`
         id|name|rarity|discount
         1|Lovely \\| Ancient U-shaped Minute|common|15%
@@ -16,14 +17,11 @@ test('Style - absolute minimum', (t) => {
         3|Lovely Metal Research|uncommon|5%
         4|Square Programming Thing|rare
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - minimal', (t) => {
+test('Style - minimal', () => {
     const parsed = each`
         id | name | rarity | discount
         1 | Lovely \\| Ancient U-shaped Minute | common | 15%
@@ -31,14 +29,11 @@ test('Style - minimal', (t) => {
         3 | Lovely Metal Research|uncommon | 5%
         4 | Square Programming Thing | rare
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - lazy basic table', (t) => {
+test('Style - lazy basic table', () => {
     const parsed = each`
         id | name                               | rarity   | discount
         ---|------------------------------------|----------|----------
@@ -47,14 +42,11 @@ test('Style - lazy basic table', (t) => {
         3  | Lovely Metal Research              | uncommon |  5%
         4  | Square Programming Thing           | rare
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - basic table', (t) => {
+test('Style - basic table', () => {
     const parsed = each`
         id | name                               | rarity   | discount
         ---|------------------------------------|----------|----------
@@ -63,14 +55,11 @@ test('Style - basic table', (t) => {
         3  | Lovely Metal Research              | uncommon |  5%      
         4  | Square Programming Thing           | rare     |          
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - aligned basic table', (t) => {
+test('Style - aligned basic table', () => {
     const parsed = each`
          id | name                               | rarity   | discount 
         ---:|:-----------------------------------|:--------:|---------:
@@ -79,14 +68,11 @@ test('Style - aligned basic table', (t) => {
          3  | Lovely Metal Research              | uncommon |  5%      
          4  | Square Programming Thing           | rare     |          
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - basic indented table', (t) => {
+test('Style - basic indented table', () => {
     const parsed = each`
         id | name                               | rarity   | discount 
         -- | ---------------------------------- | -------- | ---------
@@ -95,14 +81,11 @@ test('Style - basic indented table', (t) => {
         3  | Lovely Metal Research              | uncommon |  5%      
         4  | Square Programming Thing           | rare     |          
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - basic indented aligned table', (t) => {
+test('Style - basic indented aligned table', () => {
     const parsed = each`
         id  | name                               | rarity   | discount 
         :-: | :--------------------------------- | -------- | --------:
@@ -111,14 +94,11 @@ test('Style - basic indented aligned table', (t) => {
         3   | Lovely Metal Research              | uncommon |  5%      
         4   | Square Programming Thing           | rare     |          
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - bordered basic table', (t) => {
+test('Style - bordered basic table', () => {
     const parsed = each`
         | id | name                               | rarity   | discount |
         |----|------------------------------------|----------|----------|
@@ -127,14 +107,11 @@ test('Style - bordered basic table', (t) => {
         | 3  | Lovely Metal Research              | uncommon |  5%      |
         | 4  | Square Programming Thing           | rare     |          |
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - bordered indented table', (t) => {
+test('Style - bordered indented table', () => {
     const parsed = each`
         | id | name                               | rarity   | discount  |
         | -- | ---------------------------------- | -------- | --------- |
@@ -143,14 +120,11 @@ test('Style - bordered indented table', (t) => {
         | 3  | Lovely Metal Research              | uncommon |  5%       |
         | 4  | Square Programming Thing           | rare     |           |
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - bordered aligned table', (t) => {
+test('Style - bordered aligned table', () => {
     const parsed = each`
         | id | name                               | rarity   | discount |
         |:--:|:-----------------------------------|----------|---------:|
@@ -159,14 +133,11 @@ test('Style - bordered aligned table', (t) => {
         | 3  | Lovely Metal Research              | uncommon |  5%      |
         | 4  | Square Programming Thing           | rare     |          |
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
 
-test('Style - bordered indented aligned table', (t) => {
+test('Style - bordered indented aligned table', () => {
     const parsed = each`
         | id  | name                               | rarity   | discount |
         | :-: | :--------------------------------- | -------- | -------: |
@@ -175,9 +146,6 @@ test('Style - bordered indented aligned table', (t) => {
         | 3   | Lovely Metal Research              | uncommon |  5%      |
         | 4   | Square Programming Thing           | rare     |          |
     `((record, index) => {
-        t.deepEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
+        assert.deepStrictEqual(record, expected[index], `interprets ${JSON.stringify(record)} correctly`);
     });
-
-
-    t.end();
 });
